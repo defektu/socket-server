@@ -46,7 +46,7 @@ io.sockets.on('connection', function(socket) {
                 players[data.id].px = data.px;
                 players[data.id].py = data.py;
                 players[data.id].pz = data.pz;
-
+ 
             socket.broadcast.emit ('playerMoved', data);
         });
 
