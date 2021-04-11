@@ -30,13 +30,6 @@ io.sockets.on("connection", function(socket) {
     socket.broadcast.emit("playerJoined", newPlayer);
     // Sends everyone except the connecting player data about the new player.
   });
-  socket.on("positionUpdate", function(data) {
-    players[data.id].x = data.x;
-    players[data.id].y = data.y;
-    players[data.id].z = data.z;
-
-    socket.broadcast.emit("playerMoved", data);
-  });
 });
 
 console.log("Server started.");
