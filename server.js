@@ -46,14 +46,6 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("playerMoved", data);
       //console.log('pz' + data);
     });
-    socket.on("pointerUpdate", function(data) {
-      if (!players[data.id]) return;
-      players[data.id].px = data.px;
-      players[data.id].py = data.py;
-      players[data.id].pz = data.pz;
-      socket.broadcast.emit("pointerMoved", data);
-      //console.log('pz' + data);
-    });
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
