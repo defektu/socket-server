@@ -40,6 +40,11 @@ io.sockets.on("connection", function(socket) {
     var b = Math.random();
     players[id] = newPlayer;
     pointers[id] = newPointer;
+    players[id].r = r;
+    players[id].g = g;
+    pointers[id].r = r;
+    pointers[id].g = g;
+    pointers[id].b = b;
     // Adds the newly created player to the array.
 
     socket.emit("playerData", { id: id, players: players, pointers: pointers });
@@ -79,8 +84,6 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
-    
-    
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
