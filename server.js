@@ -12,9 +12,9 @@ function Player(id) {
   this.x = 0;
   this.y = 0;
   this.z = 0;
-  this.px = 0;
-  this.py = 0;
-  this.pz = 0;
+  //this.px = 0;
+  //this.py = 0;
+  //this.pz = 0;
   this.entity = null;
 }
 
@@ -27,7 +27,7 @@ function Pointer(id) {
 }
 console.log("New client has connected with id:");
 io.sockets.on("connection", function(socket) {
-  console.log("New client has connected with id:",socket.id);
+  console.log("New client has connected with id:", socket.id);
   socket.on("initialize", function() {
     var id = socket.id;
     var newPlayer = new Player(id);
