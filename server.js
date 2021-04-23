@@ -12,9 +12,6 @@ function Player(id) {
   this.x = 0;
   this.y = 0;
   this.z = 0;
-  //this.px = 0;
-  //this.py = 0;
-  //this.pz = 0;
   this.entity = null;
 }
 
@@ -33,6 +30,7 @@ io.sockets.on("connection", function(socket) {
     // Creates a new player object with a unique ID number.
     console.log("New client has connected with id:", socket.id);
 
+    
     players[id] = newPlayer;
     pointers[id] = newPointer;
     // Adds the newly created player to the array.
@@ -41,6 +39,7 @@ io.sockets.on("connection", function(socket) {
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
+    socket.broadcast.emit("addPointer", newPointer);
     //socket.broadcast.emit("playerJoined", newPlayer);
     
     // Sends everyone except the connecting player data about the new player.
