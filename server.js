@@ -35,7 +35,9 @@ io.sockets.on("connection", function(socket) {
     var newPointer = new Pointer(id);
     // Creates a new player object with a unique ID number.
     console.log("New client has connected with id:", socket.id);
-
+    var r = Math.random();
+    var g = Math.random();
+    var b = Math.random();
     players[id] = newPlayer;
     pointers[id] = newPointer;
     // Adds the newly created player to the array.
@@ -77,6 +79,8 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
+    
+    
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
