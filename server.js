@@ -12,9 +12,9 @@ function Player(id) {
   this.x = 0;
   this.y = 0;
   this.z = 0;
-  //this.px = 0;
-  //this.py = 0;
-  //this.pz = 0;
+  this.px = 0;
+  this.py = 0;
+  this.pz = 0;
   this.entity = null;
 }
 
@@ -58,18 +58,18 @@ io.sockets.on("connection", function(socket) {
       players[data.id].x = data.x;
       players[data.id].y = data.y;
       players[data.id].z = data.z;
-      pointers[data.id].px = data.px;
-      pointers[data.id].py = data.py;
-      pointers[data.id].pz = data.pz;
       socket.broadcast.emit("playerMoved", data);
-      socket.broadcast.emit("pointerMoved", data);
+      //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
     
 
-    socket.on("pointerUpdate", function(data2) {
-
-      socket.broadcast.emit("pointerMoved", data2);
+    socket.on("pointerUpdate", function(data) {
+      if (!pointers[data.id]) return;
+      pointers[data.id].px = data.px;
+      pointers[data.id].py = data.py;
+      pointers[data.id].pz = data.pz;
+      socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
 
