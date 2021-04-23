@@ -25,9 +25,7 @@ function Pointer(id) {
   this.z = 0;
   this.entity = null;
 }
-console.log("New client has connected with id:");
 io.sockets.on("connection", function(socket) {
-  console.log("New client has connected with id:", socket.id);
   socket.on("initialize", function() {
     var id = socket.id;
     var newPlayer = new Player(id);
