@@ -42,6 +42,7 @@ io.sockets.on("connection", function(socket) {
     pointers[id] = newPointer;
     players[id].r = r;
     players[id].g = g;
+    players[id].b = b;
     pointers[id].r = r;
     pointers[id].g = g;
     pointers[id].b = b;
