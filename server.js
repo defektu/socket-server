@@ -27,22 +27,24 @@ function Pointer(id) {
 }
 
 io.sockets.on("connection", function(socket) {
+      console.log("New client has connected with id:", socket.id);
   socket.on("initialize", function() {
     var id = socket.id;
     var newPlayer = new Player(id);
     var newPointer = new Pointer(id);
     // Creates a new player object with a unique ID number.
+    console.log("New client has connected with id:", socket.id);
 
     players[id] = newPlayer;
     pointers[id] = newPointer;
     // Adds the newly created player to the array.
 
-    socket.emit("playerData", { id: id, players: players, pointers: pointers});
+    socket.emit("playerData", { id: id, players: players, pointers: pointers });
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
     // Sends everyone except the connecting player data about the new player.
-/*
+    /*
     socket.on("initialize", function() {
       var id = socket.id;
       //console.log(socket.id);
@@ -62,13 +64,12 @@ io.sockets.on("connection", function(socket) {
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
-    
 
     socket.on("pointerUpdate", function(data) {
       if (!pointers[data.id]) return;
-      pointers[data.id].px = data.px;
-      pointers[data.id].py = data.py;
-      pointers[data.id].pz = data.pz;
+      pointers[data.id].x = data.px;
+      pointers[data.id].y = data.py;
+      pointers[data.id].z = data.pz;
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
@@ -83,6 +84,5 @@ io.sockets.on("connection", function(socket) {
     });
   });
 });
-
 console.log("Server started");
 server.listen(3000);
