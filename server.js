@@ -58,9 +58,9 @@ io.sockets.on("connection", function(socket) {
       players[data.id].x = data.x;
       players[data.id].y = data.y;
       players[data.id].z = data.z;
-      pointers.px = data.px;
-      pointers.py = data.py;
-      pointers.pz = data.pz;
+      pointers[data.id].px = data.px;
+      pointers[data.id].py = data.py;
+      pointers[data.id].pz = data.pz;
       socket.broadcast.emit("playerMoved", data);
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
