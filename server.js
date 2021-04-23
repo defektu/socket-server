@@ -31,7 +31,7 @@ io.sockets.on("connection", function(socket) {
 
     socket.on("initialize", function() {
       var id = socket.id;
-      console.log(socket.id);
+      //console.log(socket.id);
       var newPlayer = new Player(id);
       players[id] = newPlayer;
 
