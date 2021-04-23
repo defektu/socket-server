@@ -41,6 +41,8 @@ io.sockets.on("connection", function(socket) {
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
+    //socket.broadcast.emit("playerJoined", newPlayer);
+    
     // Sends everyone except the connecting player data about the new player.
     /*
     socket.on("initialize", function() {
