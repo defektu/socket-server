@@ -76,6 +76,8 @@ io.sockets.on("connection", function(socket) {
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
       delete players[socket.id];
+      if (!pointers[socket.id]) return;
+      delete pointers[socket.id];
       // Update clients with the new player killed
       socket.broadcast.emit("killPlayer", socket.id);
     });
