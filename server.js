@@ -11,6 +11,9 @@ function Player(id) {
   this.x = 0;
   this.y = 0;
   this.z = 0;
+  this.px = 0;
+  this.py = 0;
+  this.pz = 0;
   this.entity = null;
 }
 
@@ -23,7 +26,7 @@ io.sockets.on("connection", function(socket) {
     players[id] = newPlayer;
     // Adds the newly created player to the array.
 
-    socket.emit("playerData", { id: id, players: players });
+    socket.emit("playerData", { id: id, players: players});
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
@@ -35,7 +38,7 @@ io.sockets.on("connection", function(socket) {
       var newPlayer = new Player(id);
       players[id] = newPlayer;
 
-      socket.emit("playerData", { id: id, players: players});
+      socket.emit("playerData", { id: id, players: players });
       socket.broadcast.emit("playerJoined", newPlayer);
     });
 
@@ -44,6 +47,15 @@ io.sockets.on("connection", function(socket) {
       players[data.id].x = data.x;
       players[data.id].y = data.y;
       players[data.id].z = data.z;
+      players[data.id].px = data.px;
+      players[data.id].py = data.px;
+      players[data.id].pz = data.px;
+      socket.broadcast.emit("playerMoved", data);
+      //console.log('pz' + data);
+    });
+
+    socket.on("pointerUpdate", function(data) {
+
       socket.broadcast.emit("playerMoved", data);
       //console.log('pz' + data);
     });
