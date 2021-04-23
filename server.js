@@ -93,8 +93,11 @@ io.sockets.on("connection", function(socket) {
       // Update clients with the new player killed
       socket.broadcast.emit("killPlayer", socket.id);
     });
-    
 
+    // socket.on("ping", function(data) {
+    //   console.log("received ping, sending reply"); //no log shown???
+    //   socket.emit("pong"); //client receives event ~25 seconds after request
+    // });
   });
 });
 console.log("Server started");
