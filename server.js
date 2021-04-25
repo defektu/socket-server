@@ -15,6 +15,7 @@ function Player(id) {
   this.r = 0;
   this.g = 0;
   this.b = 0;
+  this.username = '';
   this.entity = null;
 }
 
@@ -72,6 +73,7 @@ io.sockets.on("connection", function(socket) {
       players[data.id].x = data.x;
       players[data.id].y = data.y;
       players[data.id].z = data.z;
+      players[data.id].username = data.username;
       socket.broadcast.emit("playerMoved", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
