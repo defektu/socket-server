@@ -67,7 +67,7 @@ io.sockets.on("connection", function(socket) {
         // Adds the newly created player to the array.
 
     socket.emit("playerData", { id: id, players: players, pointers: pointers });
-    console.log(players);
+    //console.log(players);
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
@@ -100,11 +100,7 @@ io.sockets.on("connection", function(socket) {
       
       if (!players[data.id]) return;
       players[data.id].username = data.username;
-      console.log('updated name is: ' + data.username);
       socket.broadcast.emit("updatedName", data);
-      console.log(players);
-      
-      console.log('name updated: '+ data.username);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
