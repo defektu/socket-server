@@ -48,6 +48,16 @@ io.sockets.on("connection", function(socket) {
     pointers[id].g = g;
     pointers[id].b = b;
     
+    
+    socket.on("username", function(data){
+      //console.log("New client has connected with username:", players[socket.id].username);
+      //players[data.id].username = data.username;
+      players[id].username = data.username;
+      console.log("New client has connected with username:", players[id].username);
+      
+    });
+    
+    
         // Adds the newly created player to the array.
 
     socket.emit("playerData", { id: id, players: players, pointers: pointers });
@@ -89,10 +99,10 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
+    
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
-      console.log("New client has connected with username:", players[socket.id].username);
       delete players[socket.id];
       console.log("client disconnected: ", socket.id);
       // Update clients with the new player killed
