@@ -54,13 +54,15 @@ io.sockets.on("connection", function(socket) {
       //players[data.id].username = data.username;
       players[id].username = data.username;
       console.log("New client has connected with username:", players[id].username);
+          socket.emit("playerData", { id: id, players: players, pointers: pointers });
       
     });
     
     
         // Adds the newly created player to the array.
 
-    socket.emit("playerData", { id: id, players: players, pointers: pointers });
+
+    console.log(players);
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
     socket.broadcast.emit("playerJoined", newPlayer);
