@@ -97,11 +97,14 @@ io.sockets.on("connection", function(socket) {
     });
     
     socket.on("updateName", function(data) {
+      
       if (!players[data.id]) return;
       players[data.id].username = data.username;
       console.log('updated name is: ' + data.username);
       socket.broadcast.emit("updatedName", data);
-
+      console.log(players);
+      
+      console.log('name updated: '+ data.username);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
