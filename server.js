@@ -30,7 +30,8 @@ function Pointer(id) {
   this.entity = null;
 }
 io.sockets.on("connection", function(socket) {
-  socket.on("initialize", function() {
+  
+  socket.on("initialize", function(userdata) {
     var id = socket.id;
     var newPlayer = new Player(id);
     var newPointer = new Pointer(id);
@@ -48,20 +49,24 @@ io.sockets.on("connection", function(socket) {
     pointers[id].g = g;
     pointers[id].b = b;
     
+    players[id].username = userdata.username;
+    console.log("New client has connected with username:", players[id].username);
     
-    socket.on("username", function(data){
-      //console.log("New client has connected with username:", players[socket.id].username);
-      //players[data.id].username = data.username;
-      players[id].username = data.username;
-      console.log("New client has connected with username:", players[id].username);
-          socket.emit("playerData", { id: id, players: players, pointers: pointers });
-      
-    });
+    
+    //socket.on("username", function(data){
+    //  //console.log("New client has connected with username:", players[socket.id].username);
+    //  //players[data.id].username = data.username;
+    //  players[id].username = data.username;
+    //  console.log("New client has connected with username:", players[id].username);
+    //});
+    
+    
+
     
     
         // Adds the newly created player to the array.
 
-
+    socket.emit("playerData", { id: id, players: players, pointers: pointers });
     console.log(players);
     // Sends the connecting client his unique ID, and data about the other players already connected.
 
