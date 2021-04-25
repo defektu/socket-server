@@ -86,16 +86,7 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("playerJoined", newPlayer);
     });
 */
-    socket.on("positionUpdate", function(data) {
-      if (!players[data.id]) return;
-      players[data.id].x = data.x;
-      players[data.id].y = data.y;
-      players[data.id].z = data.z;
-      socket.broadcast.emit("playerMoved", data);
-      //socket.broadcast.emit("pointerMoved", data);
-      //console.log('pz' + data);
-    });
-    
+        
     socket.on("updateName", function(data) {
       
       if (!players[data.id]) return;
@@ -105,6 +96,15 @@ io.sockets.on("connection", function(socket) {
       //console.log('pz' + data);
     });
     
+    socket.on("positionUpdate", function(data) {
+      if (!players[data.id]) return;
+      players[data.id].x = data.x;
+      players[data.id].y = data.y;
+      players[data.id].z = data.z;
+      socket.broadcast.emit("playerMoved", data);
+      //socket.broadcast.emit("pointerMoved", data);
+      //console.log('pz' + data);
+    });
 
 
     socket.on("pointerUpdate", function(data) {
