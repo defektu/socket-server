@@ -96,6 +96,16 @@ io.sockets.on("connection", function(socket) {
       //console.log('pz' + data);
     });
     
+    socket.on("updateName", function(data) {
+      if (!players[data.id]) return;
+      players[data.id].username = data.username;
+      console.log('updated name is: ' + data.username);
+      socket.broadcast.emit("updatedName", data);
+
+      //socket.broadcast.emit("pointerMoved", data);
+      //console.log('pz' + data);
+    });
+    
 
 
     socket.on("pointerUpdate", function(data) {
