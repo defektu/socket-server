@@ -19,6 +19,7 @@ function Player(id) {
   this.ry = 0;
   this.rz = 0;
   this.avatar = "a";
+  this.animState = "idle generic";
   this.username = "";
   this.entity = null;
 }
@@ -101,6 +102,14 @@ io.sockets.on("connection", function(socket) {
       if (!players[data.id]) return;
       players[data.id].avatar = data.avatar;
       socket.broadcast.emit("updatedAvatar", data);
+      //socket.broadcast.emit("pointerMoved", data);
+      //console.log('pz' + data);
+    });
+    
+    socket.on("updateAnim", function(data) {
+      if (!players[data.id]) return;
+      players[data.id].animState = data.animState;
+      socket.broadcast.emit("updateAnim", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
