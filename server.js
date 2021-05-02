@@ -106,10 +106,10 @@ io.sockets.on("connection", function(socket) {
       //console.log('pz' + data);
     });
     
-    socket.on("updateAnim", function(data) {
+    socket.on("updateAnimState", function(data) {
       if (!players[data.id]) return;
       players[data.id].animState = data.animState;
-      socket.broadcast.emit("updateAnim", data);
+      socket.broadcast.emit("updatedAnimState", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
