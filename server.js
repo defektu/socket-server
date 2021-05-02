@@ -91,7 +91,6 @@ io.sockets.on("connection", function(socket) {
 
     socket.on("updateName", function(data) {
       if (!players[data.id]) return;
-      console.log(data.username);
       players[data.id].username = data.username;
       socket.broadcast.emit("updatedName", data);
       //socket.broadcast.emit("pointerMoved", data);
