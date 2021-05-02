@@ -100,7 +100,6 @@ io.sockets.on("connection", function(socket) {
     socket.on("updateAvatar", function(data) {
       if (!players[data.id]) return;
       players[data.id].avatar = data.avatar;
-      console.log(data.avatar);
       socket.broadcast.emit("updatedAvatar", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
