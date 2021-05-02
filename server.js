@@ -15,7 +15,11 @@ function Player(id) {
   this.r = 0;
   this.g = 0;
   this.b = 0;
-  this.username = '';
+  this.rx = 0;
+  this.ry = 0;
+  this.rz = 0;
+
+  this.username = "";
   this.entity = null;
 }
 
@@ -30,7 +34,6 @@ function Pointer(id) {
   this.entity = null;
 }
 io.sockets.on("connection", function(socket) {
-  
   socket.on("initialize", function(userdata) {
     var id = socket.id;
     var newPlayer = new Player(id);
@@ -48,23 +51,21 @@ io.sockets.on("connection", function(socket) {
     pointers[id].r = r;
     pointers[id].g = g;
     pointers[id].b = b;
-    
+
     players[id].username = userdata.username;
-    console.log("New client has connected with username:", players[id].username);
-    
-    
+    console.log(
+      "New client has connected with username:",
+      players[id].username
+    );
+
     //socket.on("username", function(data){
     //  //console.log("New client has connected with username:", players[socket.id].username);
     //  //players[data.id].username = data.username;
     //  players[id].username = data.username;
     //  console.log("New client has connected with username:", players[id].username);
     //});
-    
-    
 
-    
-    
-        // Adds the newly created player to the array.
+    // Adds the newly created player to the array.
 
     socket.emit("playerData", { id: id, players: players, pointers: pointers });
     //console.log(players);
@@ -86,26 +87,28 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("playerJoined", newPlayer);
     });
 */
-        
+
     socket.on("updateName", function(data) {
-      
       if (!players[data.id]) return;
       players[data.id].username = data.username;
       socket.broadcast.emit("updatedName", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
-    
+
     socket.on("positionUpdate", function(data) {
       if (!players[data.id]) return;
       players[data.id].x = data.x;
       players[data.id].y = data.y;
       players[data.id].z = data.z;
+      players[data.id].rx = data.rx;
+      players[data.id].ry = data.ry;
+      players[data.id].rz = data.rz;
+      console.log(players[data.id].rz);
       socket.broadcast.emit("playerMoved", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
-
 
     socket.on("pointerUpdate", function(data) {
       if (!pointers[data.id]) return;
@@ -115,7 +118,6 @@ io.sockets.on("connection", function(socket) {
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
-    
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
