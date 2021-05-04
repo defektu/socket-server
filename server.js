@@ -131,6 +131,11 @@ io.sockets.on("connection", function(socket) {
       pointers[data.id].x = data.px;
       pointers[data.id].y = data.py;
       pointers[data.id].z = data.pz;
+      players[data.id].x = data.x;
+      players[data.id].y = data.y;
+      players[data.id].z = data.z;
+      
+      
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
