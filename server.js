@@ -32,6 +32,7 @@ function Pointer(id) {
   this.r = 0;
   this.g = 0;
   this.b = 0;
+  this.state = null;
   this.entity = null;
 }
 io.sockets.on("connection", function(socket) {
