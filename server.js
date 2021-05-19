@@ -38,6 +38,18 @@ function Pointer(id) {
   this.laserState = null;
   this.entity = null;
 }
+
+
+function clipPlane(id) {
+  this.x = 100;
+  this.y = 100;
+  this.z = 100;
+  this.rx = 0;
+  this.ry = 0;
+  this.rz = 0;
+  this.state = null;
+}
+
 io.sockets.on("connection", function(socket) {
   socket.on("initialize", function(userdata) {
     var id = socket.id;
@@ -143,6 +155,16 @@ io.sockets.on("connection", function(socket) {
       //console.log('pz' + data);
     });
     
+    
+    socket.on("clipPlaneUpdate", function(data) {
+      //if (!pointers[data.id]) return;
+      clipPlane.x = data.cx;
+      clipPlane.y = data.cy;
+      clipPlane.z = data.cz;
+    
+      socket.broadcast.emit("clipPlaneMoved", data);
+      //console.log('pz' + data);
+    });
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
