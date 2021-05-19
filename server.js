@@ -161,6 +161,9 @@ io.sockets.on("connection", function(socket) {
       clipPlane.x = data.cx;
       clipPlane.y = data.cy;
       clipPlane.z = data.cz;
+      clipPlane.rx = data.crx;
+      clipPlane.ry = data.cry;
+      clipPlane.rz = data.crz;
     
       socket.broadcast.emit("clipPlaneMoved", data);
       //console.log('pz' + data);
