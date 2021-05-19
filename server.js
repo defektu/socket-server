@@ -29,6 +29,9 @@ function Pointer(id) {
   this.x = 0;
   this.y = 0;
   this.z = 0;
+  this.rx = 0;
+  this.ry = 0;
+  this.rz = 0;
   this.r = 0;
   this.g = 0;
   this.b = 0;
@@ -132,6 +135,9 @@ io.sockets.on("connection", function(socket) {
       pointers[data.id].x = data.px;
       pointers[data.id].y = data.py;
       pointers[data.id].z = data.pz;
+      pointers[data.id].rx = data.rx;
+      pointers[data.id].ry = data.ry;
+      pointers[data.id].rz = data.rz;
       
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
