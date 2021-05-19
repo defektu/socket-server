@@ -48,6 +48,7 @@ function clipPlane(id) {
   this.ry = 0;
   this.rz = 0;
   this.state = null;
+  this.slider = 100;
 }
 
 io.sockets.on("connection", function(socket) {
@@ -164,7 +165,7 @@ io.sockets.on("connection", function(socket) {
       clipPlane.rx = data.crx;
       clipPlane.ry = data.cry;
       clipPlane.rz = data.crz;
-    
+      clipPlane.slider = data.clipSlider;
       socket.broadcast.emit("clipPlaneMoved", data);
       //console.log('pz' + data);
     });
