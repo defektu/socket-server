@@ -135,9 +135,9 @@ io.sockets.on("connection", function(socket) {
       pointers[data.id].x = data.px;
       pointers[data.id].y = data.py;
       pointers[data.id].z = data.pz;
-      pointers[data.id].rx = data.rx;
-      pointers[data.id].ry = data.ry;
-      pointers[data.id].rz = data.rz;
+      pointers[data.id].rx = data.prx;
+      pointers[data.id].ry = data.pry;
+      pointers[data.id].rz = data.prz;
       
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
