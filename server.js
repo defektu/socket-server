@@ -166,9 +166,13 @@ io.sockets.on("connection", function(socket) {
       clipPlane.ry = data.cry;
       clipPlane.rz = data.crz;
       clipPlane.slider = data.clipSlider;
+      clipPlane.state = data.clipState;
       socket.broadcast.emit("clipPlaneMoved", data);
       //console.log('pz' + data);
     });
+    
+    
+
 
     socket.on("disconnect", function() {
       if (!players[socket.id]) return;
