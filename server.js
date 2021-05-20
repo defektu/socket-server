@@ -18,7 +18,7 @@ function Player(id) {
   this.rx = 0;
   this.ry = 0;
   this.rz = 0;
-  this.avatar = "a";
+  this.avatar = "Man Casual";
   this.animState = "idle generic";
   this.username = "";
   this.entity = null;
