@@ -71,6 +71,7 @@ io.sockets.on("connection", function(socket) {
     pointers[id].b = b;
 
     players[id].username = userdata.username;
+    players[id].avatar = userdata.avatar;
     console.log(
       "New client has connected with username:",
       players[id].username
