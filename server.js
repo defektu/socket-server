@@ -58,17 +58,17 @@ io.sockets.on("connection", function(socket) {
     var newPointer = new Pointer(id);
     // Creates a new player object with a unique ID number.
     console.log("New client has connected with id:", socket.id);
-    var r = Math.random();
-    var g = Math.random();
-    var b = Math.random();
+    //var r = Math.random();
+    //var g = Math.random();
+    //var b = Math.random();
     players[id] = newPlayer;
     pointers[id] = newPointer;
-    players[id].r = r;
-    players[id].g = g;
-    players[id].b = b;
-    pointers[id].r = r;
-    pointers[id].g = g;
-    pointers[id].b = b;
+    //players[id].r = r;
+    //players[id].g = g;
+    //players[id].b = b;
+    //pointers[id].r = r;
+    //pointers[id].g = g;
+    //pointers[id].b = b;
 
     players[id].username = userdata.username;
     players[id].avatar = userdata.avatar;
