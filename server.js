@@ -72,6 +72,9 @@ io.sockets.on("connection", function(socket) {
 
     players[id].username = userdata.username;
     players[id].avatar = userdata.avatar;
+    pointers[id].r = userdata.pointerColor[0];
+    pointers[id].g = userdata.pointerColor[1];
+    pointers[id].b = userdata.pointerColor[2];
     console.log(
       "New client has connected with username:",
       players[id].username
