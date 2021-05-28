@@ -142,6 +142,7 @@ io.sockets.on("connection", function(socket) {
       players[data.id].rx = data.rx;
       players[data.id].ry = data.ry;
       players[data.id].rz = data.rz;
+      data.username = players[data.id].username;
       socket.broadcast.emit("playerMoved", data);
       //socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
@@ -155,7 +156,6 @@ io.sockets.on("connection", function(socket) {
       pointers[data.id].rx = data.prx;
       pointers[data.id].ry = data.pry;
       pointers[data.id].rz = data.prz;
-      
       socket.broadcast.emit("pointerMoved", data);
       //console.log('pz' + data);
     });
