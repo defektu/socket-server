@@ -51,6 +51,11 @@ function clipPlane(id) {
   this.slider = 100;
 }
 
+function admin() {
+  this.minCameraState = "";
+  this.annotation = "";
+}
+
 io.sockets.on("connection", function(socket) {
   socket.on("initialize", function(userdata) {
     var id = socket.id;
